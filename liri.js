@@ -8,7 +8,7 @@ var moment = require("moment");
 var input = process.argv[2];
 var input2 = process.argv[3];
 var allInput = process.argv;
-var colors = require("colors");
+// var colors = require("colors");
 
 for (var i = 4; i < allInput.length; i++) {
      input2 += "+" + allInput[i];
@@ -37,22 +37,6 @@ switch (input) {
      break;
 }
 function displayTweets() {
-//      var param = {
-//           screen_name: 'LewisHamilton'
-//      };
-//      var client = new Twitter({
-//        consumer_key: keys.consumer_key,
-//        consumer_secret: keys.consumer_secret,
-//        access_token_key: keys.access_token_key,
-//        access_token_secret: keys.access_token_secret
-//      });
-//      client.get('statuses/user_timeline', param, function (err, tweets, response) {
-//           if (!err) {
-//                for (var i=0; i < tweets.length; i++) {
-//                     console.log(param.screen_name + " tweeted: " + tweets[i].text);
-//                }
-//           }
-//      });
      inquirer
      .prompt([
           {
@@ -113,40 +97,15 @@ function spotifyMe() {
                     if (preview === null) {
                          preview = "Oops pick a different song!"
                     }
-                         console.log("Song Name: ".bold + dataItems[i].name);
-                         console.log("Artist: ".bold + dataItems[i].artists[0].name);
-                         console.log("Preview: ".bold + dataItems[i].preview_url);
-                         console.log("Album Title: ".bold + dataItems[i].album.name);
+                         console.log("Song Name: " + dataItems[i].name);
+                         console.log("Artist: " + dataItems[i].artists[0].name);
+                         console.log("Preview: " + dataItems[i].preview_url);
+                         console.log("Album Title: " + dataItems[i].album.name);
                          console.log("---------------------------------------------------------");
                }
           }
      });
-//      inquirer
-//      .prompt([
-//           {
-//                type: "input",
-//                message: "Pick a song!",
-//                name: "songTitle"
-//           }
-//      ])
-//      .then(function (inquirerResponse) {
-//           if (inquirerResponse) {
-//                MovieTitle = inquirerResponse.songTitle;
-//           } else {
-//                MovieTitle = "The Stroke"
-//           }
-//           var newSpotify = new Spotify({
-//                id: keys.client_id,
-//                secret: keys.client_secret
-//           });
-//           newSpotify.search({
-//           type: "track", query: MovieTitle}, function (err, data) {
-//                if (err) {
-//                          console.log("Yikes, different song?" + err);
-//                }
-//                console.log(data);
-//           })
-//      })
+
 }
 function movieMe() {
      if(!input2) {
@@ -160,14 +119,14 @@ function movieMe() {
           if (err) {
                console.log("This movie doesn't exist, try again!");
           }
-          var title = "Movie Title: ".bold + JSON.parse(body).Title;
-          var year = "Year Release: ".bold + JSON.parse(body).Year;
-          var imdbRating = "IMDB Rating: ".bold + JSON.parse(body).Ratings[0].Value;
-          var rottenTomato = "Rotten Tomatoes Rating: ".bold + JSON.parse(body).Ratings[1].Value;
-          var country = "Country Produced: ".bold + JSON.parse(body).Country;
-          var language = "Language: ".bold + JSON.parse(body).Language;
-          var plot = "Plot: ".bold + JSON.parse(body).Plot;
-          var actors = "Actors: ".bold + JSON.parse(body).Actors;
+          var title = "Movie Title: " + JSON.parse(body).Title;
+          var year = "Year Release: " + JSON.parse(body).Year;
+          var imdbRating = "IMDB Rating: " + JSON.parse(body).Ratings[0].Value;
+          var rottenTomato = "Rotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value;
+          var country = "Country Produced: " + JSON.parse(body).Country;
+          var language = "Language: " + JSON.parse(body).Language;
+          var plot = "Plot: " + JSON.parse(body).Plot;
+          var actors = "Actors: " + JSON.parse(body).Actors;
           var movieInfo = [title, year, imdbRating, rottenTomato, country, language, plot, actors];
           if (!err && response.statusCode === 200) {
                movieInfo.forEach(function(variable) {
