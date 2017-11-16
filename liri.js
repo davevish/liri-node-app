@@ -8,6 +8,7 @@ var moment = require("moment");
 var input = process.argv[2];
 var input2 = process.argv[3];
 var allInput = process.argv;
+var colors = require("colors");
 
 for (var i = 4; i < allInput.length; i++) {
      input2 += "+" + allInput[i];
@@ -19,7 +20,7 @@ if (!input) {
      console.log("node liri.js tweets");
      console.log("node liri.js spotifysongs 'Name of song'");
      console.log("node liri.js movie-info 'Movie Title'");
-     console.log("node liri.js 'Just Do It'");
+     console.log("node liri.js do-what-it-says");
 }
 switch (input) {
      case "tweets":
@@ -36,22 +37,22 @@ switch (input) {
      break;
 }
 function displayTweets() {
-     var param = {
-          screen_name: 'LewisHamilton'
-     };
-     var client = new Twitter({
-       consumer_key: keys.consumer_key,
-       consumer_secret: keys.consumer_secret,
-       access_token_key: keys.access_token_key,
-       access_token_secret: keys.access_token_secret
-     });
-     client.get('statuses/user_timeline', param, function (err, tweets, response) {
-          if (!err) {
-               for (var i=0; i < tweets.length; i++) {
-                    console.log(param.screen_name + " tweeted: " + tweets[i].text);
-               }
-          }
-     });
+//      var param = {
+//           screen_name: 'LewisHamilton'
+//      };
+//      var client = new Twitter({
+//        consumer_key: keys.consumer_key,
+//        consumer_secret: keys.consumer_secret,
+//        access_token_key: keys.access_token_key,
+//        access_token_secret: keys.access_token_secret
+//      });
+//      client.get('statuses/user_timeline', param, function (err, tweets, response) {
+//           if (!err) {
+//                for (var i=0; i < tweets.length; i++) {
+//                     console.log(param.screen_name + " tweeted: " + tweets[i].text);
+//                }
+//           }
+//      });
      inquirer
      .prompt([
           {
@@ -120,32 +121,32 @@ function spotifyMe() {
                }
           }
      });
-     inquirer
-     .prompt([
-          {
-               type: "input",
-               message: "Pick a song!",
-               name: "songTitle"
-          }
-     ])
-     .then(function (inquirerResponse) {
-          if (inquirerResponse) {
-               MovieTitle = inquirerResponse.songTitle;
-          } else {
-               MovieTitle = "The Stroke"
-          }
-          var newSpotify = new Spotify({
-               id: keys.client_id,
-               secret: keys.client_secret
-          });
-          newSpotify.search({
-          type: "track", query: MovieTitle}, function (err, data) {
-               if (err) {
-                         console.log("Yikes, different song?" + err);
-               }
-               console.log(data);
-          })
-     })
+//      inquirer
+//      .prompt([
+//           {
+//                type: "input",
+//                message: "Pick a song!",
+//                name: "songTitle"
+//           }
+//      ])
+//      .then(function (inquirerResponse) {
+//           if (inquirerResponse) {
+//                MovieTitle = inquirerResponse.songTitle;
+//           } else {
+//                MovieTitle = "The Stroke"
+//           }
+//           var newSpotify = new Spotify({
+//                id: keys.client_id,
+//                secret: keys.client_secret
+//           });
+//           newSpotify.search({
+//           type: "track", query: MovieTitle}, function (err, data) {
+//                if (err) {
+//                          console.log("Yikes, different song?" + err);
+//                }
+//                console.log(data);
+//           })
+//      })
 }
 function movieMe() {
      if(!input2) {
